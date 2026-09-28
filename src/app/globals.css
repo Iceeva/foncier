@@ -1,0 +1,30 @@
+@import "tailwindcss";
+
+:root {
+  --encre: #14211b; --fond: #f5f7f6; --carte: #ffffff; --trait: #cfd8d3;
+  --vert: #0f5c46; --vert-fonce: #0a4636; --vert-clair: #eaf3ee;
+  --jaune: #f2b705; --jaune-clair: #fdf3d7; --rouge: #b42318;
+  --texte-doux: #44514b; --rayon: 0.5rem; --taille-texte: 100%;
+}
+html.contraste-eleve { --encre: #000; --fond: #fff; --texte-doux: #000; --trait: #000; --vert: #004d33; --vert-fonce: #003322; --jaune: #7a5b00; }
+html { font-size: var(--taille-texte); }
+
+@theme inline {
+  --color-encre: var(--encre); --color-fond: var(--fond); --color-carte: var(--carte); --color-trait: var(--trait);
+  --color-vert: var(--vert); --color-vert-fonce: var(--vert-fonce); --color-vert-clair: var(--vert-clair);
+  --color-jaune: var(--jaune); --color-jaune-clair: var(--jaune-clair); --color-rouge: var(--rouge); --color-texte-doux: var(--texte-doux);
+  --font-sans: var(--font-atkinson), system-ui, sans-serif;
+}
+body { background: var(--fond); color: var(--encre); font-family: var(--font-atkinson), system-ui, sans-serif; }
+:focus-visible { outline: 3px solid var(--encre); outline-offset: 2px; box-shadow: 0 0 0 5px var(--jaune); }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.lien-evitement { position: absolute; left: -999px; top: 0; background: var(--jaune); padding: .6rem 1rem; z-index: 100; border-radius: 0 0 var(--rayon) 0; }
+.lien-evitement:focus { left: 0; }
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+@media print { .no-print { display: none !important; } }
+
+/* Carte (Leaflet) */
+.fsb-pin span { display: block; width: 24px; height: 24px; background: #fff; border: 3px solid var(--c); border-radius: 50%; box-shadow: 0 1px 4px rgba(0,0,0,.4); }
+.fsb-btn-recentrer { font: inherit; font-weight: 700; background: #fff; border: 2px solid var(--encre); border-radius: var(--rayon); padding: .35rem .7rem; cursor: pointer; box-shadow: 0 1px 4px rgba(0,0,0,.3); }
+.fsb-btn-recentrer:hover { background: var(--vert-clair); }
+.leaflet-container { font-family: var(--font-atkinson), system-ui, sans-serif; }
