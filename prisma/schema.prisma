@@ -1,0 +1,263 @@
+// ============================================================================
+// schema.prisma — FoncierSûr Bénin
+// Modèle complet, hors paiement : le flux d'achat devient une « demande
+// d'achat » instruite par un agent foncier (modèle DemandeAchat).
+// ============================================================================
+
+generator client {
+  provider   = "prisma-client"
+  engineType = "client"
+  output     = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  ACHETEUR
+  PROPRIETAIRE
+  AGENT
+  NOTAIRE
+  GEOMETRE
+  ADMIN
+}
+
+model User {
+  id             String   @id @default(cuid())
+  nom            String
+  email          String   @unique
+  telephone      String?
+  motDePasseHash String
+  role           Role
+  actif          Boolean  @default(true)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  parcelles        Parcelle[] @relation("ParcelleProprietaire")
+  documents        Document[] @relation("DocumentTitulaire")
+  documentsDeposes Document[] @relation("DocumentDepose")
+
+  demandesAchat         DemandeAchat[] @relation("DemandeAcheteur")
+  demandesAchatTraitees DemandeAchat[] @relation("DemandeAgent")
+
+  rdvProposes       Rdv[]            @relation("RdvDemandeur")
+  rdvParticipations RdvParticipant[]
+
+  notifications Notification[]
+
+  @@index([role])
+}
+
+model Commune {
+  id        String @id @default(cuid())
+  nom       String @unique
+  code      String @unique
+  centreLat Float
+  centreLng Float
+
+  parcelles Parcelle[]
+}
+
+enum UsageParcelle {
+  RESIDENTIEL
+  COMMERCIAL
+  AGRICOLE
+  TOURISTIQUE
+  INDUSTRIEL
+}
+
+enum StatutParcelle {
+  EN_VENTE
+  HORS_VENTE
+  EN_COURS
+  LITIGE
+}
+
+model Parcelle {
+  id String @id
+
+  communeId String
+  commune   Commune @relation(fields: [communeId], references: [id])
+  quartier  String
+
+  lat         Float
+  lng         Float
+  largeur     Float
+  longueur    Float
+  polygone    Json
+  superficie  Int
+  usage       UsageParcelle
+  statut      StatutParcelle @default(HORS_VENTE)
+  prix        Int?
+  description String?
+
+  proprietaireId String
+  proprietaire   User   @relation("ParcelleProprietaire", fields: [proprietaireId], references: [id])
+
+  documents     Document[]
+  demandesAchat DemandeAchat[]
+  rdv           Rdv[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([communeId])
+  @@index([statut])
+  @@index([usage])
+  @@index([proprietaireId])
+}
+
+enum TypeDocument {
+  TF
+  PLAN
+  BORNAGE
+  CERT_APPARTENANCE
+  QUITUS
+  CONVENTION
+  ACTE_NOTARIE
+  HYPOTHEQUE
+}
+
+model Document {
+  id String @id @default(cuid())
+
+  parcelleId String
+  parcelle   Parcelle @relation(fields: [parcelleId], references: [id])
+
+  type   TypeDocument
+  numero String       @unique
+  date   DateTime
+  expire DateTime?
+  statut String       @default("valide")
+
+  titulaireId String
+  titulaire   User   @relation("DocumentTitulaire", fields: [titulaireId], references: [id])
+
+  montant        Int?
+  beneficiaireId String?
+  banque         String?
+
+  fichierNom       String?
+  fichierType      String?
+  fichierTaille    Int?
+  fichierContenu   Bytes?
+  empreinteFichier String?
+
+  empreinteDonnees String
+  signature        String
+  signePar         String
+
+  deposeParId String?
+  deposePar   User?   @relation("DocumentDepose", fields: [deposeParId], references: [id])
+
+  createdAt DateTime @default(now())
+
+  @@index([parcelleId])
+  @@index([type])
+  @@index([titulaireId])
+}
+
+enum StatutDemande {
+  EN_ATTENTE
+  VALIDEE
+  REJETEE
+  ANNULEE
+}
+
+model DemandeAchat {
+  id String @id @default(cuid())
+
+  parcelleId String
+  parcelle   Parcelle @relation(fields: [parcelleId], references: [id])
+
+  acheteurId String
+  acheteur   User   @relation("DemandeAcheteur", fields: [acheteurId], references: [id])
+
+  statut StatutDemande @default(EN_ATTENTE)
+
+  controle Json @default("{}")
+
+  agentId    String?
+  agent      User?     @relation("DemandeAgent", fields: [agentId], references: [id])
+  motifRejet String?
+  decisionLe DateTime?
+
+  createdAt DateTime @default(now())
+
+  @@index([parcelleId])
+  @@index([acheteurId])
+  @@index([statut])
+}
+
+enum MotifRdv {
+  VISITE
+  VERIFICATION_GEOMETRE
+  SIGNATURE_NOTAIRE
+  REMISE_DOCUMENTS
+}
+
+enum StatutRdv {
+  PROPOSE
+  CONFIRME
+  REFUSE
+  ANNULE
+  TERMINE
+}
+
+model Rdv {
+  id String @id @default(cuid())
+
+  parcelleId String
+  parcelle   Parcelle @relation(fields: [parcelleId], references: [id])
+
+  motif  MotifRdv
+  date   DateTime
+  lieu   String
+  statut StatutRdv @default(PROPOSE)
+
+  demandeurId  String
+  demandeur    User             @relation("RdvDemandeur", fields: [demandeurId], references: [id])
+  participants RdvParticipant[]
+
+  createdAt DateTime @default(now())
+
+  @@index([parcelleId])
+  @@index([statut])
+}
+
+model RdvParticipant {
+  id     String @id @default(cuid())
+  rdvId  String
+  rdv    Rdv    @relation(fields: [rdvId], references: [id], onDelete: Cascade)
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
+
+  @@unique([rdvId, userId])
+  @@index([userId])
+}
+
+model Notification {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  message   String
+  lien      String
+  lue       Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  @@index([userId, lue])
+}
+
+model AuditLog {
+  id        String   @id @default(cuid())
+  action    String
+  details   Json
+  precedent String
+  empreinte String   @unique
+  signature String
+  createdAt DateTime @default(now())
+
+  @@index([createdAt])
+}
