@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { auth, signOut } from "@/lib/auth";
 import { ROLE_LABELS, ROUTE_TABLEAU_DE_BORD } from "@/lib/domain/refs";
+import ClocheNotifications from "./cloche-notifications";
 
 const NAV_PUBLIQUE = [
   { href: "/parcelles", label: "Terrains" }, { href: "/carte", label: "Carte" },
@@ -25,6 +26,7 @@ export default async function SiteHeader() {
         <div className="flex items-center gap-3">
           {session?.user ? (
             <>
+              <ClocheNotifications />
               <Link href={ROUTE_TABLEAU_DE_BORD[session.user.role]} className="flex items-center gap-1.5 rounded-md px-3 py-1.5 text-sm font-bold text-vert hover:bg-vert-clair">
                 {(() => { const Icone = ROLE_LABELS[session.user.role].icone; return <Icone aria-hidden />; })()}
                 Mon tableau de bord
