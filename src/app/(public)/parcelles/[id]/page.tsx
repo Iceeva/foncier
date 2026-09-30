@@ -11,6 +11,7 @@ import BadgeStatut from "@/components/parcelle/badge-statut";
 import BadgeImpot from "@/components/parcelle/badge-impot";
 import WidgetConformite from "@/components/parcelle/widget-conformite";
 import WidgetRdv from "@/components/parcelle/widget-rdv";
+import WidgetDemande from "@/components/parcelle/widget-demande";
 import CarteParcelles from "@/components/carte/carte-parcelles-chargement";
 import type { Point } from "@/lib/domain/geo";
 
@@ -61,6 +62,8 @@ export default async function PageFicheParcelle({ params }: Props) {
         </div>
         <p className="mt-2 text-sm"><Link href="/verification-andf" className="text-vert underline">Vérifier un numéro de document auprès de la base ANDF (simulation)</Link></p>
       </section>
+      <WidgetDemande parcelleId={p.id} statut={p.statut} prix={p.prix} />
+
       <WidgetRdv parcelleId={p.id} proprietaireId={p.proprietaireId} />
     </div>
   );
