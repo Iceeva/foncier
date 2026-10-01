@@ -26,8 +26,22 @@ npm run dev
 4. Le build exécute automatiquement `prisma generate` puis `next build`.
 5. Exécuter `npx prisma migrate deploy` puis `npm run db:seed`.
 
+## Fonctionnalités
+
+- Authentification réelle (NextAuth + bcrypt), chaque profil est redirigé vers **son** tableau de bord.
+- Recherche multicritère (requêtes Prisma), carte Leaflet cadrée sur le Bénin, statut fiscal (impôts à jour).
+- Moteur de conformité : pièces manquantes, documents expirés, titulaires multiples, double vente, hypothèque, chevauchement géographique.
+- Fac-similés de documents, **signature Ed25519** vérifiable publiquement (`/verification-signature`), journal d'audit chaîné et signé.
+- Demandes d'achat (sans paiement) instruites par un agent : checklist obligatoire en 6 points, transfert de propriété transactionnel.
+- Rendez-vous, notifications, espaces notaire/géomètre (dépôt de pièces signées), gestion du terrain par le propriétaire.
+- Tableau de bord administrateur, exports CSV, panneau d'accessibilité (contraste, taille de texte, lecture vocale).
+- Contrôles d'accès revérifiés côté serveur dans chaque action et route.
+
+## Stockage des fichiers
+
+Le modèle `Document` prévoit `fichierContenu` (bytea) et `empreinteFichier` pour l'import de scans ; en production,
+remplacer par un stockage objet (Vercel Blob, S3) et ne garder que l'URL.
+
 ## Journal de développement
 
-| # | Étape |
-|---|-------|
-| 1 | Init Next.js (Vercel-ready) + schéma Prisma complet (hors paiement), migration validée sur PostgreSQL réel |
+Voir `git log` (commits datés du 28/09 au 01/10/2026).
