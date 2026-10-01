@@ -2,6 +2,7 @@ import Link from "next/link";
 import { auth, signOut } from "@/lib/auth";
 import { ROLE_LABELS, ROUTE_TABLEAU_DE_BORD } from "@/lib/domain/refs";
 import ClocheNotifications from "./cloche-notifications";
+import PanneauAccessibilite from "./panneau-accessibilite";
 
 const NAV_PUBLIQUE = [
   { href: "/parcelles", label: "Terrains" }, { href: "/carte", label: "Carte" },
@@ -24,6 +25,7 @@ export default async function SiteHeader() {
           </ul>
         </nav>
         <div className="flex items-center gap-3">
+          <PanneauAccessibilite />
           {session?.user ? (
             <>
               <ClocheNotifications />
