@@ -41,7 +41,7 @@ export default async function TableauDeBordAgent() {
           const complet = controleComplet(controle);
           return (
             <article key={d.id} className="rounded-lg border border-trait bg-carte p-4">
-              <h3 className="font-bold"><Link href={`/parcelles/${d.parcelle.id}`} className="text-vert underline">{d.parcelle.id}</Link> — {fcfa(d.parcelle.prix)}</h3>
+              <h3 className="font-bold"><Link href={`/parcelles/${d.parcelle.id}`} className="text-vert underline">{d.parcelle.id}</Link> - {fcfa(d.parcelle.prix)}</h3>
               <p className="text-sm text-texte-doux">Acheteur : {d.acheteur.nom} · Déposée le {dateHeureFr(d.createdAt)}</p>
               <p className={`mt-1 text-sm font-bold ${ok ? "text-vert-fonce" : "text-rouge"}`}>{ok ? "✅ Documents conformes" : `🔴 ${anomalies.length} anomalie(s)`}</p>
               {anomalies.length > 0 && (

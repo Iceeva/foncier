@@ -1,5 +1,5 @@
 "use server";
-// Actions serveur — demandes d'achat. Remplace le paiement : aucune somme
+// Actions serveur - demandes d'achat. Remplace le paiement : aucune somme
 // n'est jamais traitée. Un agent foncier instruit chaque demande avec une
 // checklist obligatoire en 6 points avant de valider ou de rejeter.
 import { revalidatePath } from "next/cache";

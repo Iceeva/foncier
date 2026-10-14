@@ -18,7 +18,7 @@ export default async function TableauDeBordAdmin() {
   };
   return (
     <div>
-      <h1 className="text-2xl font-bold text-encre">Tableau de bord — {session.user.name}</h1>
+      <h1 className="text-2xl font-bold text-encre">Tableau de bord - {session.user.name}</h1>
       <ul className="mt-4 grid grid-cols-2 gap-4 sm:grid-cols-4">
         {[["Parcelles", parcelles], ["Utilisateurs", users], ["Documents signés", documents], ["Demandes d'achat", demandes]].map(([l, n]) => (
           <li key={l as string} className="rounded-lg border border-trait bg-carte p-4"><strong className="block text-3xl text-vert">{n}</strong>{l}</li>

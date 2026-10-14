@@ -22,8 +22,8 @@ export default function CarteParcelles({ parcelles, focusId }: { parcelles: Parc
       L.polygon(p.polygone, { color: s.couleur, weight: enFocus ? 4 : 2, fillOpacity: enFocus ? 0.45 : 0.25 }).addTo(groupe);
       const centreLat = p.polygone.reduce((s, pt) => s + pt[0], 0) / p.polygone.length;
       const centreLng = p.polygone.reduce((s, pt) => s + pt[1], 0) / p.polygone.length;
-      const popup = `<strong>${p.id}</strong> — ${p.quartier}<br>${USAGE_LABELS[p.usage]} · ${m2(p.superficie)}<br>${p.prix ? fcfa(p.prix) : "Prix non renseigné"}<br>${s.label}<br><a href="/parcelles/${p.id}">Ouvrir la fiche</a>`;
-      L.marker([centreLat, centreLng], { title: `${p.id} — ${p.quartier} — ${s.label}`, alt: `Parcelle ${p.id}, ${s.label}`, icon: L.divIcon({ className: "fsb-pin", html: `<span style="--c:${s.couleur}"></span>`, iconSize: [26, 26] }) }).bindPopup(popup).addTo(groupe);
+      const popup = `<strong>${p.id}</strong> - ${p.quartier}<br>${USAGE_LABELS[p.usage]} · ${m2(p.superficie)}<br>${p.prix ? fcfa(p.prix) : "Prix non renseigné"}<br>${s.label}<br><a href="/parcelles/${p.id}">Ouvrir la fiche</a>`;
+      L.marker([centreLat, centreLng], { title: `${p.id} - ${p.quartier} - ${s.label}`, alt: `Parcelle ${p.id}, ${s.label}`, icon: L.divIcon({ className: "fsb-pin", html: `<span style="--c:${s.couleur}"></span>`, iconSize: [26, 26] }) }).bindPopup(popup).addTo(groupe);
     }
     groupe.addTo(carte);
     if (parcelles.length) {
@@ -45,7 +45,7 @@ export default function CarteParcelles({ parcelles, focusId }: { parcelles: Parc
       <ul className="mt-3 flex flex-wrap gap-4 text-sm" aria-label="Légende">
         {Object.values(STATUT_PARCELLE_LABELS).map((s) => <li key={s.label} className="flex items-center gap-1.5"><span className="inline-block h-3 w-3 rounded-full border-2" style={{ borderColor: s.couleur, background: `${s.couleur}33` }} />{s.label}</li>)}
       </ul>
-      <noscript><ul className="mt-4 list-inside list-disc">{parcelles.map((p) => <li key={p.id}><Link href={`/parcelles/${p.id}`}>{p.id} — {p.quartier}</Link></li>)}</ul></noscript>
+      <noscript><ul className="mt-4 list-inside list-disc">{parcelles.map((p) => <li key={p.id}><Link href={`/parcelles/${p.id}`}>{p.id} - {p.quartier}</Link></li>)}</ul></noscript>
     </>
   );
 }

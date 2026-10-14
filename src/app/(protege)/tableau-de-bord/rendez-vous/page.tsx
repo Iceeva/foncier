@@ -18,7 +18,7 @@ export default async function PageRendezVous() {
       <ul className="mt-4 space-y-3">
         {rdv.map((r) => (
           <li key={r.id} className={`rounded-lg border bg-carte border-l-4 p-4 ${COULEUR_STATUT[r.statut]}`}>
-            <div className="font-bold">{MOTIF_RDV_LABELS[r.motif]} — <Link href={`/parcelles/${r.parcelle.id}`} className="text-vert underline">{r.parcelle.id}, {r.parcelle.quartier}</Link></div>
+            <div className="font-bold">{MOTIF_RDV_LABELS[r.motif]} - <Link href={`/parcelles/${r.parcelle.id}`} className="text-vert underline">{r.parcelle.id}, {r.parcelle.quartier}</Link></div>
             <div className="text-sm text-texte-doux">{dateHeureFr(r.date)} · {r.lieu}</div>
             <div className="text-sm text-texte-doux">Participants : {r.participants.map((p) => p.user.nom).join(", ")}</div>
             <div className="mt-2 flex flex-wrap items-center gap-2"><span className="font-bold">{STATUT_RDV_LABELS[r.statut]}</span><BoutonsRdv rdvId={r.id} statut={r.statut} estDemandeur={r.demandeurId === session.user.id} /></div>

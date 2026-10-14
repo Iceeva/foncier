@@ -47,7 +47,7 @@ export const ROLE_LABELS: Record<Role, { label: string; icone: Icone }> = {
 };
 
 export const STATUT_DEMANDE_LABELS: Record<StatutDemande, string> = {
-  EN_ATTENTE: "En attente d'instruction", VALIDEE: "Validée — propriété transférée", REJETEE: "Rejetée", ANNULEE: "Annulée par l'acheteur",
+  EN_ATTENTE: "En attente d'instruction", VALIDEE: "Validée - propriété transférée", REJETEE: "Rejetée", ANNULEE: "Annulée par l'acheteur",
 };
 
 export const MOTIF_RDV_LABELS: Record<MotifRdv, string> = {

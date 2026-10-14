@@ -84,20 +84,20 @@ const DOCUMENTS: DocumentSeed[] = [
 ];
 
 async function main() {
-  console.log("Seed — communes…");
+  console.log("Seed - communes…");
   for (const [nom, info] of Object.entries(COMMUNES)) {
     await prisma.commune.upsert({ where: { nom }, update: {}, create: { nom, code: info.code, centreLat: info.centreLat, centreLng: info.centreLng } });
   }
   const communes = await prisma.commune.findMany();
   const idCommune = new Map(communes.map((c) => [c.nom, c.id]));
 
-  console.log("Seed — utilisateurs…");
+  console.log("Seed - utilisateurs…");
   const hash = await bcrypt.hash(MOT_DE_PASSE_DEMO, 12);
   for (const u of UTILISATEURS) await prisma.user.upsert({ where: { email: u.email }, update: {}, create: { ...u, motDePasseHash: hash } });
   const users = await prisma.user.findMany();
   const idUser = new Map(users.map((u) => [u.email, u.id]));
 
-  console.log("Seed — parcelles…");
+  console.log("Seed - parcelles…");
   for (const p of PARCELLES) {
     const polygone: Point[] = rectangle(p.lat, p.lng, p.largeur, p.longueur);
     const superficie = Math.round(aireM2(polygone));
@@ -107,7 +107,7 @@ async function main() {
     });
   }
 
-  console.log("Seed — documents (signés Ed25519)…");
+  console.log("Seed - documents (signés Ed25519)…");
   for (const d of DOCUMENTS) {
     const titulaireId = idUser.get(d.titulaire)!;
     const beneficiaireId = d.beneficiaire ? idUser.get(d.beneficiaire)! : null;

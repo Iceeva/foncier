@@ -1,5 +1,5 @@
 "use server";
-// Actions serveur — gestion réelle d'un terrain par son propriétaire :
+// Actions serveur - gestion réelle d'un terrain par son propriétaire :
 // mise en vente, prix, signalement de litige. Chaque action revérifie
 // que l'utilisateur connecté EST le propriétaire enregistré de la parcelle.
 import { revalidatePath } from "next/cache";

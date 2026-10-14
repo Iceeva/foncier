@@ -1,5 +1,5 @@
 // ============================================================================
-// schema.prisma — FoncierSûr Bénin
+// schema.prisma - FoncierSûr Bénin
 // Modèle complet, hors paiement : le flux d'achat devient une « demande
 // d'achat » instruite par un agent foncier (modèle DemandeAchat).
 // ============================================================================

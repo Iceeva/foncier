@@ -27,8 +27,8 @@ export default async function PageDocument({ params }: Props) {
       <div className="mt-4"><Facsimile doc={doc} parcelle={doc.parcelle} titulaire={doc.titulaire} beneficiaire={beneficiaire} limites={limites} /></div>
       <section className="no-print mx-auto mt-6 max-w-2xl rounded-lg border border-trait bg-carte p-4">
         <h2 className="text-lg font-bold text-encre">Vérifier la signature de ce document</h2>
-        {signatureValide ? <p className="mt-2 flex items-center gap-2 font-bold text-vert-fonce"><PatchCheckFill aria-hidden /> Signature Ed25519 valide — document non altéré depuis sa signature par la plateforme.</p>
-          : <p className="mt-2 flex items-center gap-2 font-bold text-rouge"><ShieldExclamation aria-hidden /> Signature invalide — ce document a peut-être été altéré.</p>}
+        {signatureValide ? <p className="mt-2 flex items-center gap-2 font-bold text-vert-fonce"><PatchCheckFill aria-hidden /> Signature Ed25519 valide - document non altéré depuis sa signature par la plateforme.</p>
+          : <p className="mt-2 flex items-center gap-2 font-bold text-rouge"><ShieldExclamation aria-hidden /> Signature invalide - ce document a peut-être été altéré.</p>}
         <dl className="mt-3 space-y-2 text-sm">
           <div><dt className="font-bold">Empreinte des données (SHA-256)</dt><dd className="break-all font-mono text-xs">{doc.empreinteDonnees}</dd></div>
           <div><dt className="font-bold">Signature (Ed25519, base64)</dt><dd className="break-all font-mono text-xs">{doc.signature}</dd></div>

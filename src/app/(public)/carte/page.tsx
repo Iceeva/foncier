@@ -22,7 +22,7 @@ export default async function PageCarte({ searchParams }: { searchParams: Promis
       <div className="mt-4"><CarteParcelles parcelles={donneesCarte} /></div>
       <h2 className="mt-6 text-lg font-bold text-encre">Liste des parcelles affichées</h2>
       <ul className="mt-2 space-y-2">
-        {avecImpots.map((p) => <li key={p.id} className="flex flex-wrap items-center gap-2"><Link href={`/parcelles/${p.id}`} className="font-bold text-vert hover:underline">{p.id} — {p.quartier}, {p.commune.nom}</Link><BadgeStatut statut={p.statut} /><BadgeImpot aJour={p.impotsAJour} /></li>)}
+        {avecImpots.map((p) => <li key={p.id} className="flex flex-wrap items-center gap-2"><Link href={`/parcelles/${p.id}`} className="font-bold text-vert hover:underline">{p.id} - {p.quartier}, {p.commune.nom}</Link><BadgeStatut statut={p.statut} /><BadgeImpot aJour={p.impotsAJour} /></li>)}
       </ul>
     </div>
   );

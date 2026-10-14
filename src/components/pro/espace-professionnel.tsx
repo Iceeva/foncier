@@ -25,7 +25,7 @@ export default async function EspaceProfessionnel({ userId, role }: { userId: st
         <ul className="mt-2 space-y-2">
           {rdv.map((r) => (
             <li key={r.id} className="rounded-lg border border-vert border-l-4 bg-carte p-3">
-              <div><strong>{MOTIF_RDV_LABELS[r.motif]}</strong> — <Link href={`/parcelles/${r.parcelle.id}`} className="text-vert underline">{r.parcelle.id}, {r.parcelle.quartier}</Link></div>
+              <div><strong>{MOTIF_RDV_LABELS[r.motif]}</strong> - <Link href={`/parcelles/${r.parcelle.id}`} className="text-vert underline">{r.parcelle.id}, {r.parcelle.quartier}</Link></div>
               <div className="text-sm text-texte-doux">{dateHeureFr(r.date)} · {r.lieu}</div>
               <BoutonTerminer rdvId={r.id} />
             </li>

@@ -1,5 +1,5 @@
 // ============================================================================
-// lib/domain/audit.ts — journal d'audit CHAÎNÉ et SIGNÉ.
+// lib/domain/audit.ts - journal d'audit CHAÎNÉ et SIGNÉ.
 // Chaque entrée contient l'empreinte SHA-256 de l'entrée précédente (comme
 // une petite chaîne de blocs) ET une signature Ed25519 de la plateforme.
 // Modifier une ligne passée invaliderait sa signature ET l'empreinte de

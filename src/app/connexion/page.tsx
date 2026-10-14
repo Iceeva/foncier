@@ -8,8 +8,14 @@ export default function PageConnexion() {
         <h1 className="text-2xl font-bold text-encre">Connexion</h1>
         <p className="mt-1 text-sm text-texte-doux">FoncierSûr Bénin</p>
         <div className="mt-6"><FormulaireConnexion /></div>
-        <p className="mt-6 text-xs text-texte-doux">Comptes de démonstration : voir le README (mot de passe commun « Demo1234! »).</p>
+        <p className="mt-6 text-xs text-texte-doux">Comptes de démonstration : (admin@fonciersur.bj « Demo1234! »).</p>
+        <p className="mt-6 text-xs text-texte-doux">Comptes de démo : (fatoumata.adjovi@fonciersur.bj « Demo1234! »).</p>
+        <p className="mt-6 text-xs text-texte-doux">Comptes de démo : (koffi.dossou@notaires.bj « Demo1234! »).</p>
+        <p className="mt-6 text-xs text-texte-doux">Comptes de démo : (yao.hounsou@geometres.bj « Demo1234! »).</p>
+        <p className="mt-6 text-xs text-texte-doux">Comptes de démo : (romeo.gbaguidi@gmail.com « Demo1234! »).</p>
+        <p className="mt-6 text-xs text-texte-doux">Comptes de démo : (judicael.sagbo@gmail.com « Demo1234! »).</p>
       </div>
     </main>
   );
 }
+ 

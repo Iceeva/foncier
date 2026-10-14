@@ -1,4 +1,4 @@
-// lib/domain/controle.ts — checklist de contrôle approfondi que l'agent
+// lib/domain/controle.ts - checklist de contrôle approfondi que l'agent
 // foncier doit parcourir avant de statuer sur une demande d'achat.
 export const POINTS_CONTROLE = [
   { id: "identite", label: "Identité de l'acheteur et du vendeur vérifiée" },

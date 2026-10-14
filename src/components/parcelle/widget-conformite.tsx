@@ -16,7 +16,7 @@ export default function WidgetConformite({ anomalies, chevauche }: { anomalies: 
       {(anomalies.length > 0 || chevauche.length > 0) && (
         <ul className="mt-3 space-y-2">
           {anomalies.map((a) => <li key={a.code} className={`rounded-md border-l-4 px-3 py-2 text-sm ${STYLE_GRAVITE[a.gravite]}`}>{a.message}</li>)}
-          {chevauche.length > 0 && <li className={`rounded-md border-l-4 px-3 py-2 text-sm ${STYLE_GRAVITE.bloquant}`}>Chevauchement géographique détecté avec {chevauche.map((c) => c.id).join(", ")} — deux parcelles occupent apparemment le même terrain.</li>}
+          {chevauche.length > 0 && <li className={`rounded-md border-l-4 px-3 py-2 text-sm ${STYLE_GRAVITE.bloquant}`}>Chevauchement géographique détecté avec {chevauche.map((c) => c.id).join(", ")} - deux parcelles occupent apparemment le même terrain.</li>}
         </ul>
       )}
       <p className="mt-3 text-xs text-texte-doux">Cette analyse porte uniquement sur les documents enregistrés dans la plateforme ; elle ne remplace pas une vérification par un notaire ou l&apos;ANDF.</p>

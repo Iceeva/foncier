@@ -22,7 +22,7 @@ async function getParcelle(id: string) {
 }
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { id } = await params; const p = await getParcelle(id);
-  return { title: p ? `${p.id} — ${p.quartier}` : "Parcelle introuvable" };
+  return { title: p ? `${p.id} - ${p.quartier}` : "Parcelle introuvable" };
 }
 export default async function PageFicheParcelle({ params }: Props) {
   const { id } = await params; const p = await getParcelle(id);
@@ -33,7 +33,7 @@ export default async function PageFicheParcelle({ params }: Props) {
   return (
     <div>
       <p><Link href="/parcelles" className="inline-flex items-center gap-1 text-sm text-vert hover:underline"><ArrowLeft aria-hidden /> Toutes les parcelles</Link></p>
-      <h1 className="mt-2 flex flex-wrap items-center gap-2 text-2xl font-bold text-encre">{p.id} — {p.quartier}, {p.commune.nom}<BadgeStatut statut={p.statut} /></h1>
+      <h1 className="mt-2 flex flex-wrap items-center gap-2 text-2xl font-bold text-encre">{p.id} - {p.quartier}, {p.commune.nom}<BadgeStatut statut={p.statut} /></h1>
       <p className="mt-2 text-texte-doux">{p.description}</p>
       <dl className="mt-4 grid grid-cols-2 gap-4 rounded-lg border border-trait bg-carte p-4 sm:grid-cols-4">
         <div><dt className="text-sm text-texte-doux">Usage</dt><dd className="font-bold">{USAGE_LABELS[p.usage]}</dd></div>

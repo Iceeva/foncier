@@ -28,7 +28,7 @@ export default async function PageVerificationAndf({ searchParams }: { searchPar
           <dl className="mt-3 grid grid-cols-1 gap-2 text-sm sm:grid-cols-2">
             <div><dt className="text-texte-doux">Type</dt><dd className="font-bold">{TYPE_DOCUMENT_LABELS[resultat.doc.type].label}</dd></div>
             <div><dt className="text-texte-doux">Numéro</dt><dd className="font-bold">{resultat.doc.numero}</dd></div>
-            <div><dt className="text-texte-doux">Parcelle rattachée</dt><dd><Link href={`/parcelles/${resultat.doc.parcelleId}`} className="font-bold text-vert underline">{resultat.doc.parcelle.id} — {resultat.doc.parcelle.quartier}, {resultat.doc.parcelle.commune.nom}</Link></dd></div>
+            <div><dt className="text-texte-doux">Parcelle rattachée</dt><dd><Link href={`/parcelles/${resultat.doc.parcelleId}`} className="font-bold text-vert underline">{resultat.doc.parcelle.id} - {resultat.doc.parcelle.quartier}, {resultat.doc.parcelle.commune.nom}</Link></dd></div>
             <div><dt className="text-texte-doux">Titulaire déclaré</dt><dd className="font-bold">{resultat.doc.titulaire.nom}</dd></div>
             <div><dt className="text-texte-doux">Date de délivrance</dt><dd className="font-bold">{dateFr(resultat.doc.date)}</dd></div>
           </dl>

@@ -1,6 +1,6 @@
-# FoncierSûr Bénin — application React/Next.js
+# FoncierSûr Bénin - application React/Next.js
 
-Plateforme de vérification et de sécurisation foncière — réécriture complète
+Plateforme de vérification et de sécurisation foncière - réécriture complète
 en **Next.js (React) + PostgreSQL/Prisma**, avec authentification réelle et
 redirection automatique de chaque utilisateur vers son tableau de bord.
 
@@ -20,7 +20,7 @@ npm run dev
 
 ## Déploiement sur Vercel
 
-1. Importer le dépôt — framework détecté automatiquement : **Next.js**.
+1. Importer le dépôt - framework détecté automatiquement : **Next.js**.
 2. Ajouter une base PostgreSQL (Vercel Postgres, Neon, Supabase…) et renseigner `DATABASE_URL`.
 3. Renseigner `AUTH_SECRET` et les clés de signature (voir `.env.example`).
 4. Le build exécute automatiquement `prisma generate` puis `next build`.
@@ -41,7 +41,3 @@ npm run dev
 
 Le modèle `Document` prévoit `fichierContenu` (bytea) et `empreinteFichier` pour l'import de scans ; en production,
 remplacer par un stockage objet (Vercel Blob, S3) et ne garder que l'URL.
-
-## Journal de développement
-
-Voir `git log` (commits datés du 28/09 au 01/10/2026).

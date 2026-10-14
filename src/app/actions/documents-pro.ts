@@ -1,5 +1,5 @@
 "use server";
-// Actions serveur — dépôt d'une pièce par un professionnel (notaire ou
+// Actions serveur - dépôt d'une pièce par un professionnel (notaire ou
 // géomètre) : PV de bornage ou acte de vente notarié, signés par la
 // plateforme au moment du dépôt, exactement comme les documents du seed.
 import { revalidatePath } from "next/cache";

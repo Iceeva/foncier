@@ -18,7 +18,7 @@ export default async function WidgetDemande({ parcelleId, statut, prix }: { parc
       {demandeEnCours ? (
         <p className="mt-2 text-sm text-texte-doux">
           Une demande est en cours d&apos;instruction ({STATUT_DEMANDE_LABELS[demandeEnCours.statut]}
-          {session?.user?.role === "AGENT" || session?.user?.role === "ADMIN" ? ` — par ${demandeEnCours.acheteur.nom}` : ""}).
+          {session?.user?.role === "AGENT" || session?.user?.role === "ADMIN" ? ` - par ${demandeEnCours.acheteur.nom}` : ""}).
         </p>
       ) : !session?.user ? (
         <p className="mt-2 text-sm text-texte-doux"><a href="/connexion" className="text-vert underline">Connectez-vous</a> en tant qu&apos;acheteur pour déposer une demande d&apos;achat.</p>

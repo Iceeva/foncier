@@ -13,7 +13,7 @@ const atkinson = localFont({
 });
 
 export const metadata: Metadata = {
-  title: { default: "FoncierSûr Bénin", template: "%s — FoncierSûr Bénin" },
+  title: { default: "FoncierSûr Bénin", template: "%s - FoncierSûr Bénin" },
   description: "Visualiser, vérifier et sécuriser l'information foncière au Bénin (plateforme de démonstration).",
 };
 export const viewport: Viewport = { width: "device-width", initialScale: 1, themeColor: "#0f5c46" };
